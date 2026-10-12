@@ -1,0 +1,39 @@
+-- =====================================================
+-- 📱 ไอโฟน888❤️ - Direct Execution (Delta 100% Work)
+-- =====================================================
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+-- แจ้งเตือนว่ารันติดสำเร็จ
+pcall(function()
+    game:GetService("StarterGui"):SetCore("SendNotification", {
+        Title = "📱 ไอโฟน888❤️",
+        Text = "สคริปต์ทำงานเบื้องหลังเรียบร้อย!",
+        Duration = 4
+    })
+end)
+
+print("📱 ไอโฟน888❤️: เริ่มต้นทำงานระบบหลักแล้ว")
+
+-- 1. ระบบวิ่งเร็วป้องกันตัว
+task.spawn(function()
+    while true do
+        task.wait(0.5)
+        pcall(function()
+            if LocalPlayer.Character and LocalPlayer.Character:FindFirstChild("Humanoid") then
+                LocalPlayer.Character.Humanoid.WalkSpeed = 32
+            end
+        end)
+    end
+end)
+
+-- 2. ระบบป้องกันหลุดจากการ AFK
+pcall(function()
+    LocalPlayer.Idled:Connect(function()
+        local vu = game:GetService("VirtualUser")
+        vu:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+        task.wait(1)
+        vu:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+    end)
+end)
